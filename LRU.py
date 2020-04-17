@@ -1,15 +1,33 @@
-class LRU :  
+import os
+class LRU : 
+
+    cache = {}
+    freq = {} 
     cache_capacity = 0
     def __init__(self, MAX_CAPACITY) :
 
         self.cache_capacity = MAX_CAPACITY
 
     def put(self, uri, data) :
+        if uri not in self.cache.keys() :
+            if len (self.cache) == self.cache_capacity :
+                x = sorted(self.freq.items(), key = lambda item : item[1])[0]
+                key = x[0][:]
+                del self.cache[key]
+                del self.freq[key]
+            self.cache[uri] = data
+            self.freq[uri] = 0
     
     def get(self, uri) :
+        try :
+            self.freq[uri] += 1        
+            return self.cache[uri]
 
-    def get_cache(self) :
+        except :
+            return None
 
+    def get_cache(self) :        
+        return self.cache
 
 def main() :
     
@@ -35,4 +53,3 @@ def main() :
     assert(obj.get("2")) == None
 
 
-    
