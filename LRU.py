@@ -52,4 +52,7 @@ def main() :
     assert(obj.get("1")) == None
     assert(obj.get("2")) == None
 
+    if __name__ == "__main__" :
+        main()
+
 
