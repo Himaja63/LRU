@@ -1,6 +1,5 @@
 import os
-class LRU : 
-
+class LRU :
     cache = {}
     freq = {} 
     cache_capacity = 0
